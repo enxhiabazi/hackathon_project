@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECO AUTOMOBILES</title>
+    <script src="https://kit.fontawesome.com/9b71be7adb.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="text/css" href="{{ url_for('static', filename='/images/ecoLogo.png') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/javascript.js') }}"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav navbar-start">
+                    <li><img src="../static/images/ecoLogo.png" alt=""></li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Why us?</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/buy/auto">Buy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sell/auto">Sell</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/rent/auto">Rent</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/give/auto/for/rent">Give For Rent</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account">Account</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-end">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--------------------------------POSTS---------------------------------->
+    <div>
+        {% for auto in auto %}
+
+        <div class="buy text-start m-auto text-dark shadow-sm my-5">
+            <div class="image-container">
+                <a href="/auto/{{auto.id}}"><img src="../static/UPLOADED_FOLDER/{{auto.image}}" class="rounded"
+                        alt="picture"></a>
+            </div>
+            <div class="d-flex align-items-center justify-content-between w-100 p-2">
+                {% if user.id == auto.user_id %}
+                <p><a href="/show/{{user.id}}/auto" class="text-decoration-none text-success fs-4">{{auto.first_name}}
+                        {{auto.last_name}}</a></p>
+
+                <div class="dropdown">
+                    <div class="dots" onclick="toggleDropdown()"><i class='fa-solid fa-clover fs-4' style='color:#27b32a'></i></div>
+                    <div class="dropdown-content" id="dropdownContent">
+                        <!-- Content of the dropdown menu -->
+                        <a href="/edit/rent/auto/{{auto.id}}">Edit</a>
+                        <!-- Button trigger modal -->
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modal3">Delete</a>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="modal3Label"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modal3Label">Delete Auto</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Do you want to delete the auto?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <a href="/delete/auto/{{auto.id}}" class="btn btn-success text-light p-2">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <p><a href="/show/{{auto.user_id}}/auto"
+                        class="fs-4 text-decoration-none text-success">{{auto.first_name}} {{auto.last_name}}</a></p>
+                <i class='fa-solid fa-clover fs-4' style='color:#27b32a' data-bs-toggle="tooltip" data-bs-placement="right"
+                    title="You can't edit or delete this post"></i>
+                {% endif %}
+            </div>
+
+            <div class="d-flex flex-column gap-3 align-items-start my-1">
+                <div>
+                    <table class="table fs-5">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th class="fw-bold">Features</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="fw-bold">Make </th>
+                                <td>{{auto.make}}</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-bold">Model </th>
+                                <td>{{auto.model}}</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-bold">Price </th>
+                                <td>{{auto.price}}</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-bold">Year </th>
+                                <td>{{auto.year}}</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-bold">New/Used </th>
+                                <td>{{auto.new_used}}</td>
+                            </tr>
+                            <tr>
+                                <th class="fw-bold">Comment </th>
+                                <td>{{auto.comments}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-around align-items-center w-100">
+                    {% if auto.id in likedAutos %}
+                        <a class="btn fs-4" href="/unlike/{{auto.id}}"><i class="fa-solid fa-leaf" style="color: #2f9252;"></i></a>
+                    {% else %}
+                        <a class="btn fs-4" href="/like/{{auto.id}}"><i class="fa-solid fa-leaf"></i></a>
+                    {% endif %}
+                        
+                    {% if auto.id in savedAutos %}
+                        <a class="btn fs-4" href="/unsave/{{auto.id}}"><i class="fa-regular fa-heart" style="color: #2f9252;"></i></a>
+                    {% else %}
+                        <a class="btn fs-4" href="/save/{{auto.id}}"><i class="fa-solid fa-heart"></i></a>
+                    {% endif %}
+                        <a  href="/auto/{{auto.id}}"><i class='bx bx-comment icon text-dark fs-4'></i></a>
+                        <h5 id="like-count" class="mx-2">{{auto.num_likes}} likes</h5>
+                    <a href="https://wa.me/{{user.phone_number}}" target="_blank" class="btn btn-success text-decoration-none fs-6 p-2 rounded-3">Contact Me</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <script>
+        function toggleDropdown() {
+            var dropdownContent = document.getElementById("dropdownContent");
+            dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+        }
+        function showDeleteModal(commentId) {
+            var modalId = "#confirmDeleteModal" + commentId;
+            var modal = new bootstrap.Modal(document.querySelector(modalId));
+            modal.show();
+        }
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<body class="bg-light">
+    <nav class="bg-dark d-flex j-around al-center text-light font-22">
+        <img src="/static/images/logo.png" alt="GES Logo" class="logo">
+        <a href="/show/posts"><i class='bx bx-arrow-back bx-lg gold-text'></i></a>
+    </nav>
+    <form enctype="multipart/form-data" class="w-25 m-auto p-5 border rounded-3 mt-3 d-flex gap-3 col bg-dark"
+        action="/create/post" method="post">
+        <h1 class="text-center text-light fs-1">SHTO NJE POSTIM</h1>
+        <div class="form-row">
+            <label for="image" class="p-2 my-2">Foto: </label>
+            <input type="file" class="form-control postImage" name="image">
+        </div>
+        {% with messages = get_flashed_messages(category_filter=["postImage"]) %}
+        {% if messages %}
+        {% for message in messages %}
+        <p class="text-danger text-center">{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="form-row">
+            <label for="content" class="p-2">Komenti yt:</label>
+            <textarea class="form-control" name="content" cols="30" rows="10"></textarea>
+        </div>
+        {% with messages = get_flashed_messages(category_filter=["contentPost"]) %}
+        {% if messages %}
+        {% for message in messages %}
+        <p class="text-danger text-center">{{message}}</p>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <button class="mt-2 btn bg-warning font-22">KRIJO</button>
+
+        {% endblock %}

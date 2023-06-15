@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECO AUTOS</title>
+    <script src="https://kit.fontawesome.com/9b71be7adb.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/css/style.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="text/css" href="{{ url_for('static', filename='/images/ecoLogo.png') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/javascript.js') }}"></script>
+</head>
+<body>
+
+<body class="users-posts text-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav navbar-start">
+                    <li><img src="../static/images/ecoLogo.png" alt=""></li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Why us?</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/buy/auto">Buy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sell/auto">Sell</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/rent/auto">Rent</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/give/auto/for/rent">Give For Rent</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account">Account</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav navbar-end">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="profile">
+        <h1 class="text-center text-success my-3">{{user.first_name}} {{user.last_name}}'s Saves</h1>
+        <div class="usersPosts">
+            {% for auto in autos %}
+            <div class="box1">
+                <div class="profile-img">
+                     <a href="/auto/{{auto.id}}"><img 
+                            src="{{ url_for('static', filename='UPLOADED_FOLDER/' + auto.image) }}" class="rounded"
+                            alt="picture"></a>
+                </div>
+                <div class="d-flex justify-content-around align-items-center w-100">
+                    {% if auto.id in likedAutos %}
+                        <a class="btn fs-4" href="/unlike/{{auto.id}}"><i class="fa-solid fa-leaf" style="color: #2f9252;"></i></a>
+                    {% else %}
+                        <a class="btn fs-4" href="/like/{{auto.id}}"><i class="fa-solid fa-leaf"></i></a>
+                    {% endif %}
+                        
+                    {% if auto.id in savedAutos %}
+                        <a class="btn fs-4" href="/unsave/{{auto.id}}"><i class="fa-regular fa-heart" style="color: #2f9252;"></i></a>
+                    {% else %}
+                        <a class="btn fs-4" href="/save/{{auto.id}}"><i class="fa-solid fa-heart"></i></a>
+                    {% endif %}
+                        <a  href="/auto/{{auto.id}}"><i class='bx bx-comment icon text-dark fs-4'></i></a>
+                        <h5 id="like-count" class="mx-2">{{auto.num_likes}} likes</h5>
+                    <a href="https://wa.me/{{user.phone_number}}" target="_blank" class="btn btn-success text-decoration-none fs-6 p-2 rounded-3">Contact Me</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</body>
+</html>

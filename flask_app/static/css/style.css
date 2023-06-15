@@ -1,0 +1,420 @@
+/*CSS FOR LOGIN AND REGISTRATION*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*Here the reset ends*/
+
+/*HERE STARTS THE REAL CSS :) */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+:root {
+    --bg-color: #95c22b;
+    --secound-bg-color: #a7d930;
+    --text-color: #fff;
+    --secound-color: #28a304;
+    --main-color: #7b4425;
+}
+.navbar img{
+    width: 50px;
+    height: 50px;
+}
+header{
+    position: fixed;
+    top: 0;
+    display:flex; 
+    justify-content:center;
+    align-items:center;
+    background-color: #eeeee4;
+}
+.navbar li{
+    padding: 25px;
+}
+.navbar li a{
+    color: var(--secound-color);
+    text-decoration:none;
+    font-size: 25px;
+}
+.carousel-inner img{
+    width: 50%;
+    height: 800px;
+    object-fit: cover;
+}
+#carouselExampleControls{
+    position: relative;
+    top: 40px;
+}
+
+/*----------------------DASHBOARD SECTION 2--------------------*/
+.bar{
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    height: 100px;
+    width: 100%;
+    bottom: 0;
+}
+/*-------------------DASHBOARD SECTION 3----------------------*/
+.paragraph{
+    font-size: 25px;
+    color: rgb(97, 97, 56);
+    line-height: 30px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+.points{
+    font-size: 25px;
+    color: rgb(36, 105, 36);
+    list-style: 25px;
+    margin-bottom: 20px;
+}
+.number{
+    font: 30px;
+    margin-right: 10px;
+    font-weight: 900;
+    color:rgb(20, 116, 44);
+}
+.span{
+    font-weight: bold;
+}
+/*-----------------------------BUY/RENT-----------------------*/
+.post{
+    position: absolute;
+    top: 150px;
+    background-color: aliceblue;
+}
+.image-container {
+    width: 600px;
+    height: 400px;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.buy {
+    border-bottom: 1px solid lightgrey;
+    width: 600px;
+}
+.rent{
+    height: 400px;
+}
+/*--------------------------SHOW ONE-----------------------*/
+.showOne .img {
+    height: 700px;
+    width: 700px;
+}
+
+.showOne .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    aspect-ratio: 3/2;
+}
+
+.showOne .content {
+    height: 700px;
+    border-left: 1px solid lightgray;
+}
+
+.showOne .comment {
+    align-self: flex-end;
+    width: 100%;
+    border-top: 1px solid lightgray;
+    border-left: 1px solid lightgray;
+}
+
+.showOne .btn {
+    font-size: 20px;
+    align-self: center;
+}
+
+.showOne .likes {
+    padding: 5px;
+}
+
+.showOne .comment .comments {
+    border: none;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    line-height: 40px;
+    padding: 8px;
+}
+/*-----------------------------COMMENTS----------------------*/
+.comment .comments {
+    background-color: transparent;
+    border: 1px solid lightgray;
+    border-radius: 8px;
+    padding: 10px;
+    line-height: 30px;
+}
+/*----------------------------SCROLL--------------------------*/
+.container {
+    overflow-y: auto;
+    padding-left: 20px;
+    width: 400px;
+}
+
+.container::-webkit-scrollbar {
+    width: 8px;
+    /* Set the width of the scrollbar */
+}
+
+.container::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+    /* Set the background color of the track */
+}
+
+.container::-webkit-scrollbar-thumb {
+    background-color: #888;
+    /* Set the color of the scrollbar thumb */
+    border-radius: 4px;
+    /* Add rounded corners to the thumb */
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+/*-------------------------EDIT----------------------------*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dots {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    padding: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 4px;
+    border-bottom: 1px solid lightgray;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+
+/*-------------------SHOW USERS AUTOS--------------------------*/
+.users-posts {
+    background-color: aliceblue;
+}
+
+.users-posts header {
+    background-color: black;
+    position: fixed;
+    top: 0;
+}
+
+.users-posts .navbar a {
+    text-decoration: none;
+    color: white;
+    letter-spacing: 1px;
+
+}
+
+.users-posts .navbar a:hover {
+    text-decoration: none;
+    color: gold;
+    letter-spacing: 1px;
+
+}
+
+.users-posts .profile h1 {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.users-posts .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 150px;
+    flex-direction: column;
+    width: 100%;
+}
+
+.usersPosts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 200px 15px;
+    height: 100%;
+    padding: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.usersPosts .box1 {
+    width: 300px;
+    height: 350px;
+}
+
+.usersPosts .box1 .profile-img {
+    width: 300px;
+    height: 300px;
+}
+
+.usersPosts .box1 .profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 2/3;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Box</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+    <script>
+        var socket = io.connect();
+
+        function sendMessage() {
+            var message = document.getElementById("messageInput").value;
+            var recipientId = '{{ recipient_id }}';  // Add this line to get the recipient ID from the server
+            var data = {
+                recipient_id: recipientId,
+                message: message
+            };
+            socket.emit('message', data);
+            document.getElementById("messageInput").value = '';
+        }
+
+        socket.on('message', function(data) {
+            var chatBox = document.getElementById("chatBox");
+            var messageElement = document.createElement('div');
+            messageElement.textContent = data.sender_id + ": " + data.message;
+            chatBox.appendChild(messageElement);
+        });
+    </script>
+</head>
+<body>
+    <div id="chatBox">
+        {% for message in messages %}
+        <div>{{ message.sender_id }}: {{ message.message }}</div>
+        {% endfor %}
+    </div>
+    <input type="text" id="messageInput">
+    <button onclick="sendMessage()">Send</button>
+</body>
+</html>
