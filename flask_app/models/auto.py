@@ -36,7 +36,7 @@ class Auto:
     #READ
     @classmethod
     def get_all(cls):
-        query = "Select *, COUNT(likes.auto_id) as num_likes FROM autos left join actions on actions.auto_id = autos.id left JOIN users ON autos.user_id = users.id left JOIN likes ON autos.id = likes.auto_id where autos.isAvailable=0 GROUP BY autos.id ORDER BY autos.updated_at DESC;"
+        query = "Select autos.*, COUNT(likes.auto_id) as num_likes FROM autos left join actions on actions.auto_id = autos.id left JOIN users ON autos.user_id = users.id left JOIN likes ON autos.id = likes.auto_id where autos.isAvailable=0 GROUP BY autos.id ORDER BY autos.updated_at DESC;"
         results = connectToMySQL(cls.db_name).query_db(query)
         autos = []
         if results:
@@ -47,7 +47,7 @@ class Auto:
     #READ
     @classmethod
     def get_all_rent(cls):
-        query = "Select *, COUNT(likes.auto_id) as num_likes FROM autos left join actions on actions.auto_id = autos.id left JOIN users ON autos.user_id = users.id left JOIN likes ON autos.id = likes.auto_id  where autos.isAvailable=1 GROUP BY autos.id ORDER BY autos.updated_at DESC;"
+        query = "Select autos.*, COUNT(likes.auto_id) as num_likes FROM autos left join actions on actions.auto_id = autos.id left JOIN users ON autos.user_id = users.id left JOIN likes ON autos.id = likes.auto_id  where autos.isAvailable=1 GROUP BY autos.id ORDER BY autos.updated_at DESC;"
         results = connectToMySQL(cls.db_name).query_db(query)
         autos = []
         if results:

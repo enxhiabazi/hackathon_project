@@ -71,7 +71,7 @@ class User:
         return savedAutos
     @classmethod
     def get_user_saved_autos_all(cls, data):
-        query = "Select *, COUNT(likes.auto_id) as num_likes FROM autos left join actions on actions.auto_id = autos.id left JOIN users ON autos.user_id = users.id left JOIN likes ON autos.id = likes.auto_id left join saves on saves.auto_id = autos.id WHERE saves.user_id = %(user_id)s GROUP BY saves.auto_id;"
+        query = "Select autos.*, COUNT(likes.auto_id) as num_likes FROM autos left join actions on actions.auto_id = autos.id left JOIN users ON autos.user_id = users.id left JOIN likes ON autos.id = likes.auto_id left join saves on saves.auto_id = autos.id WHERE saves.user_id = %(user_id)s GROUP BY saves.auto_id;"
         results = connectToMySQL(cls.db_name).query_db(query, data)
         savedAutos = []
         if results:
